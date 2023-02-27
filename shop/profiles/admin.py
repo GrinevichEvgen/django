@@ -1,7 +1,6 @@
 from django.contrib import admin
 
 from profiles.models import Profile
-
 @admin.register(Profile)
 class ProductAdmin(admin.ModelAdmin):
    list_display = ("user", "first_name", "last_name", "created_at")
