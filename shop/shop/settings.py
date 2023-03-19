@@ -20,12 +20,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'django-insecure-o)lji96)sq3lc@4x22=11ultq%4ar&=560a%alwn(&$bc)98d0'
-SECRET_KEY = os.getenv(key='SECRET_KEY')
- #SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
-#DEBUG = os.getenv('DEBUG', None)
-DEBUG = bool(os.getenv(key='DEBUG'))
+SECRET_KEY = 'django-insecure-o)lji96)sq3lc@4x22=11ultq%4ar&=560a%alwn(&$bc)98d0'
+
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -39,6 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
+    'crispy_bootstrap5',
     'profiles',
     'products',
     'purchase'
@@ -59,7 +58,7 @@ ROOT_URLCONF = 'shop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,6 +129,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 LOGGING = {
    'version': 1,
