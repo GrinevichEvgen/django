@@ -1,4 +1,3 @@
-
 from django import forms
 
 COLOR_CHOISES = (

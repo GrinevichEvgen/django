@@ -27,8 +27,9 @@ def index(request):
         return HttpResponse(f'Products sorted by popularity <br> {for_view}')
     if request.GET.get("sort") == 'purchased_money':
         get_all_products = get_all_products.annotate(
-            purchased_money=Sum(F('price')*F('purchases__count'))).order_by('-purchased_money')
-        for_view = '<br>'.join([f'Product name - {data.title}. Earned - {data.purchased_money}' for data in get_all_products])
+            purchased_money=Sum(F('price') * F('purchases__count'))).order_by('-purchased_money')
+        for_view = '<br>'.join(
+            [f'Product name - {data.title}. Earned - {data.purchased_money}' for data in get_all_products])
         return HttpResponse(f'Products sorted by earned money <br> {for_view}')
     for data in get_all_products:
         get_data = f'Product name - {data.title}. Price - {data.price}.<br>'
@@ -36,8 +37,9 @@ def index(request):
 
     return HttpResponse(prod_for_view)
 
+
 def add_product(request):
-    form = ProductAdd()
+    ProductAdd()
     if request.method == "POST":
         form = ProductAdd(request.POST)
         if form.is_valid():
