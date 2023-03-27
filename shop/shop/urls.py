@@ -17,7 +17,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path
 
-from products.views import index, add_product
+from products.views import index, add_product, product_view
 from profiles.views import profiles, register, thanks, logout_view
 
 urlpatterns = [
@@ -28,7 +28,8 @@ urlpatterns = [
     path("thanks/", thanks, name="thanks"),
     path('add_product/', add_product, name='add_product'),
     path('login_view/', logout_view, name="login_view"),
-    path('logout_view/', logout_view, name="logout_view")
+    path('logout_view/', logout_view, name="logout_view"),
+    path('products/', product_view, name="product_view")
 
 ]
 if settings.DEBUG:

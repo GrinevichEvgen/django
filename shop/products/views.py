@@ -1,54 +1,29 @@
 import logging
-
-from django.db.models import Sum, F
 from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 
-from products.forms import ProductAdd
 from products.models import Product
 
 logger = logging.getLogger(__name__)
-
-
 def index(request):
-    get_all_products = Product.objects.all()
-    prod_for_view = ""
-    if request.GET.get("title"):
-        get_all_products = get_all_products.filter(title=request.GET.get("title"))
-    if request.GET.get("color"):
-        get_all_products = get_all_products.filter(color__icontains=request.GET.get("color"))
-    if request.GET.get("sort") == 'price':
-        get_all_products = get_all_products.order_by('-price')
-        for_view = '<br>'.join([f'Product name - {data.title}. Price - {data.price}' for data in get_all_products])
-        return HttpResponse(f'Products sorted by price <br> {for_view}')
-    if request.GET.get("sort") == 'popularity':
-        get_all_products = get_all_products.annotate(count_sum=Sum("purchases__count")).order_by('-count_sum')
-        for_view = '<br>'.join([f'Product name - {data.title}. Sold - {data.count_sum}' for data in get_all_products])
-        return HttpResponse(f'Products sorted by popularity <br> {for_view}')
-    if request.GET.get("sort") == 'purchased_money':
-        get_all_products = get_all_products.annotate(
-            purchased_money=Sum(F('price') * F('purchases__count'))).order_by('-purchased_money')
-        for_view = '<br>'.join(
-            [f'Product name - {data.title}. Earned - {data.purchased_money}' for data in get_all_products])
-        return HttpResponse(f'Products sorted by earned money <br> {for_view}')
-    for data in get_all_products:
-        get_data = f'Product name - {data.title}. Price - {data.price}.<br>'
-        prod_for_view += get_data
+    products = Product.objects.all()
+    title = request.GET.get("title")
+    if title is not None:
+        products = products.filter(title__icontains=title)
+    purchases__count = request.GET.get("purchases__count")
+    if purchases__count is not None:
+        products = products.filter(purchases__count=purchases__count)
 
-    return HttpResponse(prod_for_view)
+
+    return render(request, "index.html", {"products": products})
 
 
 def add_product(request):
-    ProductAdd()
-    if request.method == "POST":
-        form = ProductAdd(request.POST)
-        if form.is_valid():
-            Product.objects.create(title=form.cleaned_data["title"],
-                                   price=form.cleaned_data["price"],
-                                   description=form.cleaned_data["description"],
-                                   color=form.cleaned_data["color"])
-            return redirect("index")
-    else:
-        form = ProductAdd()
+    return None
 
-    return render(request, "product_add.html", {"form": form})
+
+
+
+def product_view(request):
+    products_list = Product.objects.all()
+    return render(request, "index.html", {"products_list": products_list})
