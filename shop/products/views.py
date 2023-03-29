@@ -5,6 +5,8 @@ from django.shortcuts import render
 from products.models import Product
 
 logger = logging.getLogger(__name__)
+
+
 def index(request):
     products = Product.objects.all()
     title = request.GET.get("title")
@@ -14,14 +16,11 @@ def index(request):
     if purchases__count is not None:
         products = products.filter(purchases__count=purchases__count)
 
-
     return render(request, "index.html", {"products": products})
 
 
 def add_product(request):
     return None
-
-
 
 
 def product_view(request):
