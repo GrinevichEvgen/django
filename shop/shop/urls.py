@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf import settings
 from django.contrib import admin
+from django.template.defaulttags import comment
 from django.urls import path, include
 
 from products.views import index, add_product, product_view
@@ -36,7 +37,8 @@ urlpatterns = [
     path('login_view/', logout_view, name="login_view"),
     path('logout_view/', logout_view, name="logout_view"),
     path('products/', product_view, name="product_view"),
-path('', index, name="index"),
+    path('', index, name="index"),
+    path('comments/', comment, name="comment"),
 
 ]
 if settings.DEBUG:

@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'profiles',
     'products',
-    'purchase'
+    'purchase',
+    'comments'
 ]
 
 MIDDLEWARE = [
