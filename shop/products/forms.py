@@ -12,3 +12,5 @@ class ProductAdd(forms.Form):
     price = forms.IntegerField(min_value=0)
     description = forms.CharField(max_length=255, required=False)
     color = forms.ChoiceField(choices=COLOR_CHOISES)
+
+
