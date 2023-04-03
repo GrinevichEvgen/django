@@ -1,11 +1,15 @@
+from django.conf import settings
 from django.db import models
 
 
 class Comment(models.Model):
-    author = models.CharField(max_length=50)
-    content = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=255)
+    content = models.TextField(max_length=255)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True,
+                               related_name="comment")
+
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+
 
     def __init__(self, *args, **kwargs):
         super().__init__(args, kwargs)
@@ -15,4 +19,5 @@ class Comment(models.Model):
         return self.title
 
 
-# Create your models here.
+
+
