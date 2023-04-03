@@ -16,9 +16,9 @@ def add_comments(request):
         form = AddCommentForm(request.POST)
         if form.is_valid():
             Comment.objects.create(title=form.cleaned_data["title"], text=form.cleaned_data["content"],
-                                author=request.user)
+                                   author=request.user)
 
             return redirect("/comments/")
     else:
         form = AddCommentForm()
-    return render(request, "add_note.html", {"form": form})
+    return render(request, "add_comment.html", {"form": form})
