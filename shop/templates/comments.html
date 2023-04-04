@@ -1,10 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block title %}Comments{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1> Notes </h1>
+  <div class="row mb-3">
+  {% for note in notes %}
+    {% if forloop.counter0|divisibleby:4 %}
+      </div><div class="row mb-4">
+    {% endif %}
+    <div class="col-3">
+      {% include "comment.html" %}
+    </div>
+  {% endfor %}
+  </div>
+</div>
+
+{% endblock %}
