@@ -40,3 +40,7 @@ class LoginView(CreateAPIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
         token = Token.objects.get_or_create(user=user)[0].key
         return Response(status=status.HTTP_200_OK, data={"token": token})
+
+
+class RegistertView:
+    pass
