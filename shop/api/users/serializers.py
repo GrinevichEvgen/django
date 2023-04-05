@@ -1,5 +1,3 @@
-
-
 from rest_framework import serializers
 
 
@@ -10,3 +8,7 @@ class RegisterSerializer(serializers.Serializer):
 
 class LoginSerializer(RegisterSerializer):
     """Login serializer."""
+
+
+class LogoutSerializer(serializers.Serializer):
+    pass
