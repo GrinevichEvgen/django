@@ -1,11 +1,11 @@
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from rest_framework import status
+from rest_framework import status, serializers
 from rest_framework.authtoken.models import Token
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView, DestroyAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.views import APIView
+
 from api.users.serializers import RegisterSerializer, LoginSerializer
 
 
@@ -42,15 +42,10 @@ class LoginView(CreateAPIView):
         return Response(status=status.HTTP_200_OK, data={"token": token})
 
 
-# def post(request):
-#     request.user.auth_token.delete()
-#     return Response(status=status.HTTP_200_OK)
+class LogoutView(DestroyAPIView):
+    serializer_class = serializers.Serializer
+    permission_classes = [IsAuthenticated]
 
-
-def post(request, *args, **kwargs):
-    request.user.auth_token.delete()
-    return Response(status=status.HTTP_200_OK)
-
-
-class LogoutView(APIView):
-    permission_classes = IsAuthenticated
+    def delete(self, request, *args, **kwargs):
+        Token.objects.filter(user=request.user).delete()
+        return Response()

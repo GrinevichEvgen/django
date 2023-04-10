@@ -19,6 +19,3 @@ class ProductViewSet(viewsets.ModelViewSet):
     serializer_class = ProductModelSerializer
     permission_classes = []
 
-
-class ProductsViewSet:
-    pass

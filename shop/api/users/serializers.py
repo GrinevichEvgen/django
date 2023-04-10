@@ -10,5 +10,3 @@ class LoginSerializer(RegisterSerializer):
     """Login serializer."""
 
 
-class LogoutSerializer(serializers.Serializer):
-    pass
