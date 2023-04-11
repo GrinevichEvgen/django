@@ -24,7 +24,7 @@ class Command(BaseCommand):
             Product.objects.update_or_create(external_id=item["external_id"], defaults={
                 "title": item["name"],
                 "price": item["price"],
-                "image": f"product/{image_name}",
+                "image": f"products/{image_name}",
                 "excerpt": item["category"],
                 "description": item["link"],
             })

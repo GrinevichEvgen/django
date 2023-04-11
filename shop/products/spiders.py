@@ -24,6 +24,6 @@ class OmaSpider(scrapy.Spider):
         next_page = response.css(".page-nav_box .btn__page-nav:last-child::attr(href)").get()
         if next_page is not None:
             self.current_page += 1
-            if self.current_page == 5:
+            if self.current_page == 3:
                 return
             yield response.follow(next_page, callback=self.parse)
