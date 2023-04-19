@@ -23,7 +23,7 @@ SECRET_KEY = 'django-insecure-o)lji96)sq3lc@4x22=11ultq%4ar&=560a%alwn(&$bc)98d0
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -80,10 +80,10 @@ WSGI_APPLICATION = 'shop.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "django",
-        "USER": "django",
+        "NAME": os.getenv("POSTGRES_NAME", "django"),
+        "USER": os.getenv("POSTGRES_USER", "django"),
         "PASSWORD": os.getenv("POSTGRES_PASSWORD", "django"),
-        "HOST": "localhost",
+        "HOST": os.getenv("DATABASE_HOST", "localhost"),
         "PORT": 5432,
     }
 }
@@ -134,10 +134,12 @@ MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_URL = "media/"
 
 
+REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
+
 CACHES = {
    "default": {
        "BACKEND": "django.core.cache.backends.redis.RedisCache",
-       "LOCATION": "redis://127.0.0.1:6379",
+       "LOCATION": f"redis://{REDIS_HOST}:6379",
    }
 }
 
