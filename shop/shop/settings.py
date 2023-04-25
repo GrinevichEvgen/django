@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'products',
     'purchase',
     'comments',
+    'django_rq',
 ]
 
 MIDDLEWARE = [
@@ -143,6 +144,14 @@ CACHES = {
    }
 }
 
+RQ_QUEUES = {
+    'default': {
+       'HOST': REDIS_HOST,
+       'PORT': 6379,
+       'DB': 0,
+       'DEFAULT_TIMEOUT': 360,
+    },
+}
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
