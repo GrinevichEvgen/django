@@ -1,6 +1,6 @@
-from django.conf import settings
-from django.db import models
 from decimal import Decimal
+
+from django.db import models
 
 COLOR_CHOICES = (
     ("RED", "Red"),
@@ -16,6 +16,7 @@ class Product(models.Model):
 
     color = models.CharField(max_length=32, choices=COLOR_CHOICES, default="RED")
     price = models.DecimalField(default=Decimal("0"), decimal_places=5, max_digits=10)
+    price_usd = models.DecimalField(default=Decimal("0"), decimal_places=5, max_digits=10)
     excerpt = models.TextField(blank=True, null=True)
 
     description = models.TextField(blank=True, null=True)
@@ -24,5 +25,3 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
-
-

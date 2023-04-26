@@ -38,11 +38,12 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     'crispy_forms',
     'crispy_bootstrap5',
+     'django_rq',
     'profiles',
     'products',
     'purchase',
     'comments',
-    'django_rq',
+
 ]
 
 MIDDLEWARE = [

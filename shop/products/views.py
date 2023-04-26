@@ -27,7 +27,6 @@ def index(request):
     if purchases__count is not None:
         products = products.filter(purchases__count=purchases__count)
 
-    return render(request, "index.html", {"products": products})
     response = render(request, "index.html", {"products": products})
     cache.set(f"products-view-{title}-{purchases__count}", response, 60 * 60)
     return response
