@@ -11,8 +11,8 @@ services:
   redis:
     image: redis:latest
 
-  django:
-    django: &django
+
+  django: &django
     image: evgengrinevich/django:latest
     ports:
       - "8000:8000"
@@ -43,6 +43,6 @@ services:
 #      - DATABASE_HOST=postgres
 #      - REDIS_HOST=redis
     <<: *django
-      ports: [ ]
+    ports: [ ]
     command: |
       python shop/manage.py rqworker
