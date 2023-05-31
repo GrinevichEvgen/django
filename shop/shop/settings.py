@@ -85,7 +85,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": os.getenv("POSTGRES_NAME", "django"),
         "USER": os.getenv("POSTGRES_USER", "django"),
-        "PASSWORD": os.getenv("POSTGRES_PASSWORD", "django"),
+        "PASSWORD": os.getenv("POSTGRES_PASS", "django"),
         "HOST": os.getenv("DATABASE_HOST", "localhost"),
         "PORT": 5432,
     }
@@ -133,7 +133,7 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = ROOT_DIR / "static"
 STATIC_URL = "static/"
 
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = ROOT_DIR / "media"
 MEDIA_URL = "media/"
 
 REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
