@@ -32,10 +32,6 @@ def register(request):
     return render(request, "register.html", {"form": form})
 
 
-def thanks(request):
-    return HttpResponse(f"Thank you!")
-
-
 def login_view(request):
     if request.method == "POST":
         form = LoginForm(request.POST)
@@ -44,9 +40,9 @@ def login_view(request):
                 request=request,
                 username=form.cleaned_data["email"],
                 password=form.cleaned_data["password"],
-                                )
+            )
             if user is None:
-                return HttpResponse('BadRequest', status=400)
+                return HttpResponse("BadRequest", status=400)
             login(request, user)
             return redirect("index")
     else:

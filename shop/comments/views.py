@@ -12,8 +12,10 @@ def add_comments(request):
     if request.method == "POST":
         form = AddCommentForm(request.POST)
         if form.is_valid():
-            Comment.objects.create(title=form.cleaned_data["title"],
-                                content=form.cleaned_data["content"],)
+            Comment.objects.create(
+                title=form.cleaned_data["title"],
+                content=form.cleaned_data["content"],
+            )
 
             return redirect("/comments/")
     else:

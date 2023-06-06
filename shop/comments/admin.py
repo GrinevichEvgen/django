@@ -8,7 +8,14 @@ from comments.models import Comment
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ("title", "created_at",)
-    fields = ("title", "content", "created_at",)
+    list_display = (
+        "title",
+        "created_at",
+    )
+    fields = (
+        "title",
+        "content",
+        "created_at",
+    )
     readonly_fields = ("created_at",)
     search_fields = ("title",)

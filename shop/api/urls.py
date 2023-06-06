@@ -1,5 +1,3 @@
-from django.contrib.auth.views import LoginView
-
 from django.urls import include, path
 from rest_framework import routers
 from api.products.views import ProductViewSet, TheMostExpensiveProductViewSet
@@ -14,10 +12,10 @@ urlpatterns = [
     path(
         "products/expensive/",
         TheMostExpensiveProductViewSet.as_view(),
-        name="products_expensive"
+        name="products_expensive",
     ),
     path("", include(router.urls)),
     path("register/", RegisterView.as_view(), name="register"),
     path("login/", LoginView.as_view(), name="login"),
-    path('logout/', LogoutView.as_view(), name='logout'),
+    path("logout/", LogoutView.as_view(), name="logout"),
 ]
