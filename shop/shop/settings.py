@@ -22,7 +22,7 @@ ROOT_DIR = BASE_DIR.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-o)lji96)sq3lc@4x22=11ultq%4ar&=560a%alwn(&$bc)98d0"
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
