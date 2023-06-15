@@ -1,5 +1,7 @@
 from django.conf import settings
 from django.db import models
+from django.utils.translation import gettext_lazy as _
+
 
 
 class Profile(models.Model):
@@ -18,3 +20,8 @@ class Address(models.Model):
     city = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+
+    class Meta:
+
+        verbose_name = _("Profile")
+        verbose_name_plural = _("Profiles")
