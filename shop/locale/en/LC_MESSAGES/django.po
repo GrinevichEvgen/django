@@ -23,11 +23,11 @@ msgstr ""
 
 #: profiles/models.py:14
 msgid "Profile"
-msgstr ""
+msgstr "Профиль"
 
 #: profiles/models.py:15
 msgid "Profiles"
-msgstr ""
+msgstr "Профили"
 
 #: shop/settings.py:149
 msgid "English"
@@ -39,4 +39,4 @@ msgstr ""
 
 #: templates/index.html:8
 msgid "Products"
-msgstr ""
+msgstr "Продукты"
